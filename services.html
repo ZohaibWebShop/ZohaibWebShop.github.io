@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Care Services | The Madison Range – Ennis, Montana</title>
+    <meta name="description" content="Home watch, STR turnovers, concierge, and field services for Madison Valley homeowners and STR operators.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --range-navy: #0A1A2F;
+            --saddle-gold: #C49A6C;
+            --bone-white: #F2EDE4;
+            --slate-gray: #4A4F57;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--range-navy);
+            color: var(--bone-white);
+            overflow-x: hidden;
+        }
+
+        /* --- NAVIGATION & LOGO --- */
+        nav { position: fixed; top: 0; width: 100%; height: 100px; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; background: rgba(10, 26, 47, 0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .logo-box { display: flex; align-items: center; height: 65px; text-decoration: none; }
+        .logo-svg { height: 100%; width: auto; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { color: var(--bone-white); text-decoration: none; text-transform: uppercase; font-size: 0.75rem; font-weight: 800; letter-spacing: 1.5px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--saddle-gold); }
+        .btn-gold { background: var(--saddle-gold); color: var(--range-navy); padding: 14px 28px; border: none; font-weight: 900; text-transform: uppercase; cursor: pointer; transition: 0.3s; letter-spacing: 1px; }
+        .btn-gold:hover { background: white; transform: translateY(-3px); }
+
+        /* --- MOBILE TOGGLE & DRAWER --- */
+        .mobile-toggle { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1100; }
+        .mobile-toggle span { width: 30px; height: 3px; background: var(--saddle-gold); transition: 0.3s; }
+        .nav-drawer { position: fixed; top: 0; right: -100%; width: 85%; height: 100vh; background: var(--range-navy); z-index: 1050; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; padding: 140px 40px; gap: 2rem; border-left: 2px solid var(--saddle-gold); }
+        .nav-drawer.active { right: 0; }
+        .nav-drawer a { color: var(--bone-white); font-size: 1.5rem; font-weight: 900; text-transform: uppercase; text-decoration: none; }
+
+
+        /* --- PAGE SPECIFIC STYLES --- */
+        /* :root {
+            --range-navy: #0A1A2F;
+            --saddle-gold: #C49A6C;
+            --bone-white: #F2EDE4;
+            --slate-gray: #4A4F57;
+            --font-primary: 'Montserrat', 'Avenir Next', 'Proxima Nova', sans-serif;
+            --font-weight-regular: 400;
+            --font-weight-bold: 700;
+            --font-weight-heavy: 800;
+            --font-size-h1: 3rem;
+            --font-size-h2: 2rem;
+            --font-size-h3: 1.5rem;
+            --font-size-body: 1rem;
+            --font-size-small: 0.875rem;
+        } */
+
+        .page-body {
+            font-family: var(--font-primary);
+            background-color: var(--bone-white);
+            color: var(--slate-gray);
+            margin: 100px 0 0 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            /* max-width removed for wider layout */
+            padding: 0 5%;
+        }
+
+        /* Breadcrumb Styling */
+        .breadcrumb {
+            padding: 2rem 0 0 0;
+            margin-bottom: 2rem;
+            list-style: none;
+            background-color: transparent;
+            font-size: var(--font-size-small);
+        }
+
+        .breadcrumb-item {
+            display: inline-block;
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+            display: inline-block;
+            padding: 0 0.5rem;
+            color: var(--slate-gray);
+            content: ">";
+        }
+
+        .breadcrumb-item a {
+            color: var(--saddle-gold);
+            text-decoration: none;
+            font-weight: var(--font-weight-bold);
+        }
+
+        .breadcrumb-item a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumb-item.active {
+            color: var(--slate-gray);
+        }
+
+        h1, h2 {
+            color: var(--range-navy);
+        }
+
+        h1 { font-size: var(--font-size-h1); }
+        h2 { font-size: var(--font-size-h2); }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 100px 5% 40px; background: #050E19; text-align: center; border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .footer-tagline { font-style: italic; opacity: 0.5; margin: 30px 0; display: block; }
+        .contact-row { display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; font-weight: 700; }
+        .copyright { font-size: 0.7rem; opacity: 0.3; text-transform: uppercase; letter-spacing: 2px; }
+
+        @media (max-width: 992px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: flex; }
+            
+            .mobile-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+            .mobile-toggle.open span:nth-child(2) { opacity: 0; }
+            .mobile-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="/" class="logo-box">
+            <svg class="logo-svg" viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="45" width="280" height="6" fill="white"></rect><text x="315" y="60" font-family="Montserrat" font-weight="900" font-size="52" fill="white">THE</text><text x="20" y="115" font-family="Montserrat" font-weight="900" font-size="62" letter-spacing="2" fill="white">MADISON</text><rect x="20" y="145" width="85" height="8" fill="white"></rect><text x="120" y="165" font-family="Montserrat" font-weight="900" font-size="62" letter-spacing="4" fill="white">RANGE</text><g transform="translate(450, 20)"><path d="M0 140 L45 30 L90 140 L135 30 L180 140" stroke="white" stroke-width="16" fill="none"></path><path d="M125 100 L180 100" stroke="white" stroke-width="16" fill="none"></path></g></svg>
+        </a>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/services.html" style="color: var(--saddle-gold);">Services</a>
+            <a href="/who-we-are.html">Who We Serve</a>
+            <a href="/about.html">About & Contact</a>
+            <a href="/Store.html">Store</a>
+            <button class="btn-gold" onclick="window.location.href='/about.html#contact'">Request Service</button>
+        </div>
+
+        <div class="mobile-toggle" id="mobile-toggle">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <div class="nav-drawer" id="nav-drawer">
+        <a href="/">Home</a>
+        <a href="/services.html">Services</a>
+        <a href="/who-we-are.html">Who We Serve</a>
+        <a href="/about.html">About & Contact</a>
+        <a href="/Store.html">Store</a>
+        <button class="btn-gold" style="margin-top: 20px;" onclick="window.location.href='/about.html#contact'">Request Service</button>
+    </div>
+
+    <main class="container page-body">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Services</li>
+            </ol>
+        </nav>
+
+        <div class="page-intro">
+            <h1>Madison Range Services</h1>
+            <p>Madison Range provides home watch, STR support, concierge, and select field services for property owners in the Madison Valley. We are your first call for anything your home or guests need.</p>
+        </div>
+
+        <section id="home-watch">
+            <h2>Home Watch &amp; Property Care</h2>
+            <p>Scheduled interior and exterior checks, keyholder service, arrival prep, and seasonal support for absentee owners and STRs. Professional checklists and photo reports after every visit.</p>
+            <!-- Services Table for Home Watch would go here -->
+            <button>Schedule Property Care</button>
+        </section>
+
+        <section id="str-support">
+            <h2>STR Turnovers &amp; Guest Support</h2>
+            <p>Turnovers, guest coordination, and listing care for Airbnb/VRBO hosts and professional STR managers. We help you maintain 5-star reviews and maximize booking performance.</p>
+            <!-- Services Table for STR Support would go here -->
+            <button>Talk About Your STRs</button>
+        </section>
+
+        <section id="concierge">
+            <h2>Owner Concierge &amp; Arrival Services</h2>
+            <p>High-touch support for owners and guests. We handle the details so you can enjoy your time in the Madison Valley.</p>
+            <!-- Services Table for Concierge would go here -->
+            <button>Request Concierge Services</button>
+        </section>
+
+        <section id="coming-soon">
+            <h2>Additional &amp; Coming-Soon Services</h2>
+            <p>As we grow, Madison Range is adding more ways to support your property and lifestyle. Availability may be limited or seasonal. Contact us to learn more.</p>
+            <!-- Service Groups for Coming Soon would go here -->
+        </section>
+    </main>
+
+    <footer>
+        <div class="wordmark" style="font-size: 1.5rem; color: var(--saddle-gold); font-weight: 900;">MADISON RANGE</div>
+        <span class="footer-tagline">"One call for everything your Madison Valley property needs."</span>
+        <div class="contact-row">
+            <span>info@madisonrange.com</span>
+            <span>Ennis, Montana</span>
+        </div>
+        <p class="copyright">© 2026 Madison Range Holdings, LLC | Ennis, MT</p>
+    </footer>
+
+    <script>
+        // Drawer Logic
+        const toggle = document.getElementById('mobile-toggle');
+        const drawer = document.getElementById('nav-drawer');
+        toggle.addEventListener('click', () => {
+            toggle.classList.toggle('open');
+            drawer.classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>

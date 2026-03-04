@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who We Serve in the Madison Valley | The Madison Range</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        :root {
+            --range-navy: #0A1A2F;
+            --saddle-gold: #C49A6C;
+            --bone-white: #F2EDE4;
+            --slate-gray: #4A4F57;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--range-navy); color: var(--bone-white); line-height: 1.6; }
+
+        /* --- NAVIGATION --- */
+        nav { position: fixed; top: 0; width: 100%; height: 100px; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; background: rgba(10, 26, 47, 0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .logo-box { display: flex; align-items: center; height: 65px; text-decoration: none; }
+        .logo-svg { height: 100%; width: auto; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { color: var(--bone-white); text-decoration: none; text-transform: uppercase; font-size: 0.75rem; font-weight: 800; letter-spacing: 1.5px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--saddle-gold); }
+        .btn-gold { background: var(--saddle-gold); color: var(--range-navy); padding: 14px 28px; border: none; font-weight: 900; text-transform: uppercase; cursor: pointer; transition: 0.3s; letter-spacing: 1px; }
+        .btn-gold:hover { background: white; transform: translateY(-3px); }
+
+        /* --- MOBILE TOGGLE & DRAWER --- */
+        .mobile-toggle { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1100; }
+        .mobile-toggle span { width: 30px; height: 3px; background: var(--saddle-gold); transition: 0.3s; }
+        .nav-drawer { position: fixed; top: 0; right: -100%; width: 85%; height: 100vh; background: var(--range-navy); z-index: 1050; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; padding: 140px 40px; gap: 2rem; border-left: 2px solid var(--saddle-gold); }
+        .nav-drawer.active { right: 0; }
+        .nav-drawer a { color: var(--bone-white); font-size: 1.5rem; font-weight: 900; text-transform: uppercase; text-decoration: none; }
+
+        /* --- BREADCRUMB --- */
+        .breadcrumb-container { padding: 130px 5% 20px; }
+        .breadcrumb { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 800; }
+        .breadcrumb a { color: var(--saddle-gold); text-decoration: none; }
+        .breadcrumb span { margin: 0 10px; opacity: 0.4; }
+
+        /* --- HEADER --- */
+        .page-header { padding: 40px 5% 80px; }
+        .page-header h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 900; text-transform: uppercase; margin-bottom: 1.5rem; }
+        .page-header p { max-width: 800px; font-size: 1.2rem; opacity: 0.9; border-left: 4px solid var(--saddle-gold); padding-left: 25px; }
+
+        /* --- SEGMENT SECTIONS --- */
+        .segment { padding: 100px 5%; border-top: 1px solid rgba(255,255,255,0.1); }
+        .segment:nth-child(even) { background-color: var(--bone-white); color: var(--range-navy); }
+        .container { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        
+        .segment-content h2 { font-size: 2.2rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1.5rem; line-height: 1.2; }
+        .segment-content p { font-size: 1.1rem; margin-bottom: 30px; opacity: 0.9; }
+        
+        .benefit-list { list-style: none; }
+        .benefit-list li { margin-bottom: 15px; display: flex; align-items: flex-start; gap: 15px; font-weight: 700; }
+        .benefit-list li::before { content: "✓"; color: var(--saddle-gold); font-weight: 900; }
+
+        .segment-img { width: 100%; height: 400px; object-fit: cover; border-bottom: 10px solid var(--saddle-gold); }
+
+        /* --- VISION BLOCK --- */
+        .vision-cta { padding: 120px 5%; text-align: center; background: #050E19; }
+        .vision-cta h2 { font-size: 2.5rem; font-weight: 900; text-transform: uppercase; margin-bottom: 20px; }
+        .vision-cta h2 span { color: var(--saddle-gold); }
+        .vision-cta p { max-width: 700px; margin: 0 auto 40px; font-size: 1.1rem; opacity: 0.7; }
+
+        /* --- FOOTER --- */
+        footer { padding: 100px 5% 40px; background: #050E19; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-tagline { font-style: italic; opacity: 0.5; margin: 30px 0; display: block; }
+        .contact-row { display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; font-weight: 700; }
+        .copyright { font-size: 0.7rem; opacity: 0.3; text-transform: uppercase; letter-spacing: 2px; }
+
+        @media (max-width: 992px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: flex; }
+            .container { grid-template-columns: 1fr; gap: 40px; }
+            .segment-img { height: 300px; order: -1; }
+            .mobile-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+            .mobile-toggle.open span:nth-child(2) { opacity: 0; }
+            .mobile-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="midsonrange.html" class="logo-box">
+            <svg class="logo-svg" viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="45" width="280" height="6" fill="white"></rect><text x="315" y="60" font-family="Montserrat" font-weight="900" font-size="52" fill="white">THE</text><text x="20" y="115" font-family="Montserrat" font-weight="900" font-size="62" letter-spacing="2" fill="white">MADISON</text><rect x="20" y="145" width="85" height="8" fill="white"></rect><text x="120" y="165" font-family="Montserrat" font-weight="900" font-size="62" letter-spacing="4" fill="white">RANGE</text><g transform="translate(450, 20)"><path d="M0 140 L45 30 L90 140 L135 30 L180 140" stroke="white" stroke-width="16" fill="none"></path><path d="M125 100 L180 100" stroke="white" stroke-width="16" fill="none"></path></g></svg>
+        </a>
+        <div class="nav-links">
+            <a href="midsonrange.html">Home</a>
+            <a href="service.html">Services</a>
+            <a href="who-we-are.html" style="color: var(--saddle-gold);">Who We Serve</a>
+            <a href="about.html">About & Contact</a>
+            <a href="Store.html">Store</a>
+            <button class="btn-gold" onclick="window.location.href='about.html#contact'">Request Service</button>
+        </div>
+        <div class="mobile-toggle" id="mobile-toggle">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <div class="nav-drawer" id="nav-drawer">
+        <a href="midsonrange.html">Home</a>
+        <a href="service.html">Services</a>
+        <a href="who-we-are.html">Who We Serve</a>
+        <a href="about.html">About & Contact</a>
+        <a href="Store.html">Store</a>
+        <button class="btn-gold" style="margin-top: 20px;" onclick="window.location.href='about.html#contact'">Request Service</button>
+    </div>
+
+    <div class="breadcrumb-container">
+        <div class="breadcrumb">
+            <a href="midsonrange.html">Home</a> <span>/</span> Who We Serve
+        </div>
+    </div>
+
+    <header class="page-header">
+        <h1>Who We Serve in the Madison Valley</h1>
+        <p>Madison Range supports property owners, STR hosts, guests, and locals with reliable, Montana-built solutions.</p>
+    </header>
+
+    <section class="segment">
+        <div class="container">
+            <div class="segment-content reveal">
+                <h2>Absentee & <br>Seasonal Homeowners</h2>
+                <p>Second homes, cabins, and ranch properties owned by people who can't be here year-round. You need local eyes and someone who understands Montana winters.</p>
+                <ul class="benefit-list">
+                    <li>Scheduled home watch and photo reports</li>
+                    <li>Storm and freeze checks after major weather</li>
+                    <li>Arrival prep and seasonal transitions</li>
+                    <li>Single point of contact for emergencies</li>
+                </ul>
+            </div>
+            <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&q=80&w=1000" class="segment-img reveal" alt="Montana Cabin">
+        </div>
+    </section>
+
+    <section class="segment">
+        <div class="container">
+            <img src="https://images.unsplash.com/photo-1449156001935-d2861575b600?auto=format&fit=crop&q=80&w=1000" class="segment-img reveal" alt="Luxury Rental">
+            <div class="segment-content reveal">
+                <h2>Short-Term Rental <br>Owners & Managers</h2>
+                <p>Airbnb/VRBO hosts and professional managers who need reliable local support to maintain guest satisfaction and protect rental income.</p>
+                <ul class="benefit-list">
+                    <li>Between-guest turnovers and condition checks</li>
+                    <li>On-call response for guest issues</li>
+                    <li>Listing care and photo updates</li>
+                    <li>Vendor coordination (cleaning/maintenance)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="segment">
+        <div class="container">
+            <div class="segment-content reveal">
+                <h2>Local Ranches, <br>Trades & Businesses</h2>
+                <p>Ranches, contractors, and operators who need welding, field repair, storage, and project support in the Ennis area.</p>
+                <ul class="benefit-list">
+                    <li>Field welding and equipment repair</li>
+                    <li>Storage for vehicles, trailers, and gear</li>
+                    <li>Trade coordination and project oversight</li>
+                    <li>Local accountability for specialized tasks</li>
+                </ul>
+            </div>
+            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=1000" class="segment-img reveal" alt="Montana Ranch">
+        </div>
+    </section>
+
+    <section class="vision-cta reveal">
+        <h2>One Call for <span>Everything</span></h2>
+        <p>For our clients, we are the only call they make when anything comes up at their home or rental – we handle it or coordinate the right local pro and stay accountable end-to-end.</p>
+        <button style="background:var(--saddle-gold); color:var(--range-navy); padding:20px 45px; border:none; font-weight:900; text-transform:uppercase; cursor:pointer; font-size:1rem;" onclick="window.location.href='about.html#contact'">Get Started Now</button>
+    </section>
+
+    <footer>
+        <div class="wordmark" style="font-size: 1.5rem; color: var(--saddle-gold); font-weight: 900;">MADISON RANGE</div>
+        <span class="footer-tagline">"One call for everything your Madison Valley property needs."</span>
+        <div class="contact-row">
+            <span>info@madisonrange.com</span>
+            <span>Ennis, Montana</span>
+        </div>
+        <p class="copyright">© 2026 Madison Range Holdings, LLC | Ennis, MT</p>
+    </footer>
+
+    <script>
+        const toggle = document.getElementById('mobile-toggle');
+        const drawer = document.getElementById('nav-drawer');
+        toggle.addEventListener('click', () => {
+            toggle.classList.toggle('open');
+            drawer.classList.toggle('active');
+        });
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray(".reveal").forEach(elem => {
+            gsap.from(elem, {
+                scrollTrigger: { trigger: elem, start: "top 85%" },
+                duration: 1.2, y: 40, opacity: 0, ease: "power3.out", stagger: 0.3
+            });
+        });
+    </script>
+</body>
+</html>

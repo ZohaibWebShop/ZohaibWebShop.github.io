@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About & Contact | The Madison Range – Ennis, Montana</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        :root {
+            --range-navy: #0A1A2F;
+            --saddle-gold: #C49A6C;
+            --bone-white: #F2EDE4;
+            --slate-gray: #4A4F57;
+            --dark-bg: #050E19;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--range-navy); color: var(--bone-white); line-height: 1.6; padding-bottom: 60px; }
+
+        /* --- NAVIGATION --- */
+        nav { position: fixed; top: 0; width: 100%; height: 100px; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; background: rgba(10, 26, 47, 0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .logo-box { display: flex; align-items: center; height: 65px; text-decoration: none; }
+        .logo-svg { height: 100%; width: auto; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { color: var(--bone-white); text-decoration: none; text-transform: uppercase; font-size: 0.75rem; font-weight: 800; letter-spacing: 1.5px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--saddle-gold); }
+        .btn-gold { background: var(--saddle-gold); color: var(--range-navy); padding: 14px 28px; border: none; font-weight: 900; text-transform: uppercase; cursor: pointer; transition: 0.3s; letter-spacing: 1px; }
+        .btn-gold:hover { background: white; transform: translateY(-3px); }
+
+        /* --- MOBILE TOGGLE & DRAWER --- */
+        .mobile-toggle { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1100; }
+        .mobile-toggle span { width: 30px; height: 3px; background: var(--saddle-gold); transition: 0.3s; }
+        .nav-drawer { position: fixed; top: 0; right: -100%; width: 85%; height: 100vh; background: var(--range-navy); z-index: 1050; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; padding: 140px 40px; gap: 2rem; border-left: 2px solid var(--saddle-gold); }
+        .nav-drawer.active { right: 0; }
+        .nav-drawer a { color: var(--bone-white); font-size: 1.5rem; font-weight: 900; text-transform: uppercase; text-decoration: none; }
+
+        /* --- BREADCRUMB --- */
+        .breadcrumb-container { padding: 130px 5% 20px; }
+        .breadcrumb { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 800; }
+        .breadcrumb a { color: var(--saddle-gold); text-decoration: none; }
+        .breadcrumb span { margin: 0 10px; opacity: 0.4; }
+
+        /* --- ABOUT CONTENT --- */
+        .about-section { padding: 40px 5% 100px; }
+        .container { /* max-width removed for wider layout */ }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+        
+        .about-content h1 { font-size: 3.5rem; font-weight: 900; text-transform: uppercase; margin-bottom: 2rem; color: var(--saddle-gold); }
+        .about-content p { font-size: 1.15rem; margin-bottom: 25px; opacity: 0.9; }
+
+        /* --- NOW VS SOON BLOCK --- */
+        .roadmap-block { background: var(--bone-white); color: var(--range-navy); padding: 80px 5%; margin: 60px 0; }
+        .roadmap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        .roadmap-col h3 { font-size: 1.8rem; font-weight: 900; text-transform: uppercase; margin-bottom: 20px; border-bottom: 4px solid var(--saddle-gold); display: inline-block; }
+        .roadmap-list { list-style: none; }
+        .roadmap-list li { padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.05); font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        .roadmap-list li::before { content: "•"; color: var(--saddle-gold); font-size: 1.5rem; }
+
+        /* --- CONTACT FORM --- */
+        .contact-section { padding: 100px 5%; background: var(--dark-bg); }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 100px; }
+        
+        .contact-info h2 { font-size: 2.5rem; font-weight: 900; text-transform: uppercase; margin-bottom: 30px; }
+        .contact-item { margin-bottom: 30px; }
+        .contact-item h4 { color: var(--saddle-gold); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 5px; }
+        .contact-item p { font-size: 1.2rem; font-weight: 700; }
+
+        form { background: rgba(255,255,255,0.03); padding: 50px; border: 1px solid rgba(255,255,255,0.1); }
+        .form-group { margin-bottom: 25px; }
+        label { display: block; font-weight: 800; text-transform: uppercase; font-size: 0.75rem; margin-bottom: 10px; letter-spacing: 1px; }
+        input, select, textarea { 
+            width: 100%; padding: 15px; background: rgba(255,255,255,0.05); 
+            border: 1px solid rgba(255,255,255,0.2); color: white; 
+            font-family: 'Montserrat', sans-serif; font-size: 1rem;
+        }
+        input:focus, textarea:focus { border-color: var(--saddle-gold); outline: none; }
+        
+        .btn-submit { 
+            background: var(--saddle-gold); color: var(--range-navy); 
+            padding: 20px 40px; border: none; font-weight: 900; 
+            text-transform: uppercase; cursor: pointer; width: 100%; font-size: 1rem;
+        }
+
+        /* --- FOOTER --- */
+        footer { padding: 100px 5% 40px; background: #050E19; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-tagline { font-style: italic; opacity: 0.5; margin: 30px 0; display: block; }
+        .contact-row { display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; font-weight: 700; }
+        .copyright { font-size: 0.7rem; opacity: 0.3; text-transform: uppercase; letter-spacing: 2px; }
+
+        @media (max-width: 992px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: flex; }
+            .about-grid, .roadmap-grid, .contact-grid { grid-template-columns: 1fr; gap: 50px; }
+            form { padding: 30px; }
+            .mobile-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+            .mobile-toggle.open span:nth-child(2) { opacity: 0; }
+            .mobile-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="midsonrange.html" class="logo-box">
+            <svg class="logo-svg" viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="45" width="280" height="6" fill="white"></rect><text x="315" y="60" font-family="Montserrat" font-weight="900" font-size="52" fill="white">THE</text><text x="20" y="115" font-family="Montserrat" font-weight="900" font-size="62" letter-spacing="2" fill="white">MADISON</text><rect x="20" y="145" width="85" height="8" fill="white"></rect><text x="120" y="165" font-family="Montserrat" font-weight="900" font-size="62" letter-spacing="4" fill="white">RANGE</text><g transform="translate(450, 20)"><path d="M0 140 L45 30 L90 140 L135 30 L180 140" stroke="white" stroke-width="16" fill="none"></path><path d="M125 100 L180 100" stroke="white" stroke-width="16" fill="none"></path></g></svg>
+        </a>
+        <div class="nav-links">
+            <a href="midsonrange.html">Home</a>
+            <a href="service.html">Services</a>
+            <a href="who-we-are.html">Who We Serve</a>
+            <a href="about.html" style="color: var(--saddle-gold);">About & Contact</a>
+            <a href="Store.html">Store</a>
+            <button class="btn-gold" onclick="window.location.href='#contact'">Request Service</button>
+        </div>
+        <div class="mobile-toggle" id="mobile-toggle">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <div class="nav-drawer" id="nav-drawer">
+        <a href="midsonrange.html">Home</a>
+        <a href="service.html">Services</a>
+        <a href="who-we-are.html">Who We Serve</a>
+        <a href="about.html">About & Contact</a>
+        <a href="Store.html">Store</a>
+        <button class="btn-gold" style="margin-top: 20px;" onclick="window.location.href='#contact'">Request Service</button>
+    </div>
+
+    <div class="breadcrumb-container">
+        <div class="breadcrumb">
+            <a href="midsonrange.html">Home</a> <span>/</span> About & Contact
+        </div>
+    </div>
+
+    <section class="about-section">
+        <div class="container about-grid">
+            <div class="about-content reveal">
+                <h1>About <br>Madison Range</h1>
+                <p>Madison Range is a multi-division service company based in Ennis, Montana. We support property owners, STR hosts, guests, and locals with reliable, Montana-built solutions.</p>
+                <p>Over time, we are building a regional platform where property owners only need one call for everything their home and guests require. Today, we focus on what owners need most: home watch, STR support, and concierge.</p>
+                <p>We are committed to growing responsibly – adding services and capacity as we build a strong base of recurring clients and a reliable team.</p>
+            </div>
+            <div class="reveal">
+                <img src="https://images.unsplash.com/photo-1493514789931-586cb221d7a7?auto=format&fit=crop&q=80&w=1000" style="width:100%; border-bottom: 10px solid var(--saddle-gold);" alt="Madison Valley">
+            </div>
+        </div>
+    </section>
+
+    <section class="roadmap-block reveal">
+        <div class="container">
+            <h2 style="font-size: 2.2rem; font-weight: 900; text-transform: uppercase; margin-bottom: 40px; text-align: center;">The Roadmap</h2>
+            <div class="roadmap-grid">
+                <div class="roadmap-col">
+                    <h3>Now</h3>
+                    <ul class="roadmap-list">
+                        <li>Home Watch & Property Care</li>
+                        <li>STR Turnovers & Guest Support</li>
+                        <li>Owner Concierge & Arrival Prep</li>
+                    </ul>
+                </div>
+                <div class="roadmap-col">
+                    <h3>Soon</h3>
+                    <ul class="roadmap-list" style="opacity: 0.6;">
+                        <li>Welding & Field Repair</li>
+                        <li>Storage for Vehicles & Gear</li>
+                        <li>Outdoor & Wellness Rentals</li>
+                        <li>Workforce Housing for Trades</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="container contact-grid">
+            <div class="contact-info reveal">
+                <h2>Get In Touch</h2>
+                <p style="margin-bottom: 40px; opacity: 0.8;">Ready to protect your Madison Valley investment? Let’s talk about your property and what you need.</p>
+                
+                <div class="contact-item">
+                    <h4>Email</h4>
+                    <p>info@madisonrange.com</p>
+                </div>
+                <div class="contact-item">
+                    <h4>Location</h4>
+                    <p>Ennis, Montana</p>
+                </div>
+                <div class="contact-item">
+                    <h4>Vision</h4>
+                    <p>One call for everything.</p>
+                </div>
+            </div>
+
+            <form class="reveal">
+                <div class="form-group">
+                    <label>Full Name (Required)</label>
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address (Required)</label>
+                    <input type="email" placeholder="email@address.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Property Location</label>
+                    <input type="text" placeholder="Ennis, Jeffers, etc.">
+                </div>
+                <div class="form-group">
+                    <label>Property Type</label>
+                    <select>
+                        <option>Second Home</option>
+                        <option>Short-Term Rental (STR)</option>
+                        <option>Ranch</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea rows="5" placeholder="Tell us about your needs..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Request Service</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="wordmark" style="font-size: 1.5rem; color: var(--saddle-gold); font-weight: 900;">MADISON RANGE</div>
+        <span class="footer-tagline">"One call for everything your Madison Valley property needs."</span>
+        <div class="contact-row">
+            <span>info@madisonrange.com</span>
+            <span>Ennis, Montana</span>
+        </div>
+        <p class="copyright">© 2026 Madison Range Holdings, LLC | Ennis, MT</p>
+    </footer>
+
+    <script>
+        const toggle = document.getElementById('mobile-toggle');
+        const drawer = document.getElementById('nav-drawer');
+        toggle.addEventListener('click', () => {
+            toggle.classList.toggle('open');
+            drawer.classList.toggle('active');
+        });
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray(".reveal").forEach(elem => {
+            gsap.from(elem, {
+                scrollTrigger: { trigger: elem, start: "top 85%" },
+                duration: 1.2, y: 40, opacity: 0, ease: "power3.out", stagger: 0.3
+            });
+        });
+    </script>
+</body>
+</html>

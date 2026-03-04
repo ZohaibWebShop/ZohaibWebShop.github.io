@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Care Services | The Madison Range – Ennis, Montana</title>
+    <meta name="description" content="Home watch, STR turnovers, concierge, and field services for Madison Valley homeowners and STR operators.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        :root {
+            --range-navy: #0A1A2F;
+            --saddle-gold: #C49A6C;
+            --bone-white: #F2EDE4;
+            --slate-gray: #4A4F57;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--range-navy); color: var(--bone-white); line-height: 1.6; }
+
+        /* --- NAVIGATION (Matches Home) --- */
+        nav { position: fixed; top: 0; width: 100%; height: 100px; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; background: rgba(10, 26, 47, 0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .logo-box { display: flex; align-items: center; height: 65px; text-decoration: none; }
+        .logo-svg { height: 100%; width: auto; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { color: var(--bone-white); text-decoration: none; text-transform: uppercase; font-size: 0.75rem; font-weight: 800; letter-spacing: 1.5px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--saddle-gold); }
+        .btn-gold { background: var(--saddle-gold); color: var(--range-navy); padding: 14px 28px; border: none; font-weight: 900; text-transform: uppercase; cursor: pointer; transition: 0.3s; letter-spacing: 1px; }
+        .btn-gold:hover { background: white; transform: translateY(-3px); }
+
+        /* --- MOBILE TOGGLE & DRAWER --- */
+        .mobile-toggle { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1100; }
+        .mobile-toggle span { width: 30px; height: 3px; background: var(--saddle-gold); transition: 0.3s; }
+        .nav-drawer { position: fixed; top: 0; right: -100%; width: 85%; height: 100vh; background: var(--range-navy); z-index: 1050; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; padding: 140px 40px; gap: 2rem; border-left: 2px solid var(--saddle-gold); }
+        .nav-drawer.active { right: 0; }
+        .nav-drawer a { color: var(--bone-white); font-size: 1.5rem; font-weight: 900; text-transform: uppercase; text-decoration: none; }
+
+        /* --- BREADCRUMB --- */
+        .breadcrumb-container { padding: 130px 5% 20px; }
+        .breadcrumb { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 800; }
+        .breadcrumb a { color: var(--saddle-gold); text-decoration: none; }
+        .breadcrumb span { margin: 0 10px; opacity: 0.4; }
+
+        /* --- HEADER SECTION (Matches who-we-are) --- */
+        .page-header { padding: 40px 5% 80px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .page-header h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 900; text-transform: uppercase; margin-bottom: 1.5rem; }
+        .page-header p { max-width: 800px; font-size: 1.2rem; opacity: 0.9; border-left: 4px solid var(--saddle-gold); padding-left: 25px; }
+
+        /* --- SERVICE SECTIONS --- */
+        .service-section { padding: 100px 5%; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .service-section:nth-child(even) { background-color: var(--bone-white); color: var(--range-navy); }
+        .container { /* max-width removed for wider layout */ }
+        .section-header { margin-bottom: 50px; }
+        .section-header h2 { font-size: 2.5rem; font-weight: 900; text-transform: uppercase; margin-bottom: 1rem; }
+        .section-header p { max-width: 700px; font-size: 1.1rem; }
+        .additional h2,
+        .additional p {
+            color:#ffffff;
+        }
+
+        /* --- PRICING TABLES --- */
+        .pricing-table { width: 100%; border-collapse: collapse; margin-top: 30px; text-align: left; }
+        .pricing-table th { padding: 20px; text-transform: uppercase; font-weight: 900; font-size: 0.85rem; letter-spacing: 1px; border-bottom: 2px solid var(--saddle-gold); }
+        .pricing-table td { padding: 25px 20px; border-bottom: 1px solid rgba(128, 128, 128, 0.2); }
+        .price-tag { font-weight: 900; color: var(--saddle-gold); }
+
+        .cta-box { margin-top: 40px; display: flex; justify-content: flex-start; }
+
+        /* --- COMING SOON SECTION --- */
+        .soon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 50px; }
+        .soon-card { padding: 40px; border: 1px dashed rgba(255,255,255,0.2); color:#ffffff; transition: 0.3s; }
+        .soon-card:hover { opacity: 1; border-color: var(--saddle-gold); }
+        .soon-card h3 { font-size: 1.2rem; margin-bottom: 10px; text-transform: uppercase; color: var(--saddle-gold); }
+
+        /* --- MOBILE RESPONSIVE --- */
+        footer { padding: 100px 5% 40px; background: #050E19; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-tagline { font-style: italic; opacity: 0.5; margin: 30px 0; display: block; }
+        .contact-row { display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; font-weight: 700; }
+        .copyright { font-size: 0.7rem; opacity: 0.3; text-transform: uppercase; letter-spacing: 2px; }
+
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: flex; }
+            .pricing-table thead { display: none; }
+            .pricing-table tr { display: block; margin-bottom: 20px; border: 1px solid #ddd; padding: 10px; }
+            .pricing-table td { display: block; text-align: right; padding: 10px; border: none; }
+            .pricing-table td::before { content: attr(data-label); float: left; font-weight: 900; text-transform: uppercase; font-size: 0.7rem; }
+            .mobile-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+            .mobile-toggle.open span:nth-child(2) { opacity: 0; }
+            .mobile-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="midsonrange.html" class="logo-box">
+            <svg class="logo-svg" viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg">
+                <rect x="20" y="45" width="280" height="6" fill="white"/>
+                <text x="315" y="60" font-family="Montserrat" font-weight="900" font-size="52" fill="white">THE</text>
+                <text x="20" y="115" font-family="Montserrat" font-weight="900" font-size="62" letter-spacing="2" fill="white">MADISON</text>
+                <rect x="20" y="145" width="85" height="8" fill="white"/>
+                <text x="120" y="165" font-family="Montserrat" font-weight="900" font-size="62" letter-spacing="4" fill="white">RANGE</text>
+                <g transform="translate(450, 20)">
+                    <path d="M0 140 L45 30 L90 140 L135 30 L180 140" stroke="white" stroke-width="16" fill="none"/>
+                    <path d="M125 100 L180 100" stroke="white" stroke-width="16" fill="none"/>
+                </g>
+            </svg>
+        </a>
+        <div class="nav-links">
+            <a href="midsonrange.html">Home</a>
+            <a href="service.html" style="color: var(--saddle-gold);">Services</a>
+            <a href="who-we-are.html">Who We Serve</a>
+            <a href="about.html">About & Contact</a>
+            <a href="Store.html">Store</a>
+            <button class="btn-gold" onclick="window.location.href='/about.html#contact'">Request Service</button>
+        </div>
+
+        <div class="mobile-toggle" id="mobile-toggle">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <div class="nav-drawer" id="nav-drawer">
+        <a href="/midsonrange.html">Home</a>
+        <a href="/service.html">Services</a>
+        <a href="/who-we-are.html">Who We Serve</a>
+        <a href="/about.html">About & Contact</a>
+        <a href="/Store.html">Store</a>
+        <button class="btn-gold" style="margin-top: 20px;" onclick="window.location.href='/about.html#contact'">Request Service</button>
+    </div>
+
+    <div class="breadcrumb-container">
+        <div class="breadcrumb">
+            <a href="/midsonrange.html">Home</a> <span>/</span> Services
+        </div>
+    </div>
+
+    <header class="page-header">
+        <h1>Madison Range Services</h1>
+        <p>Madison Range provides home watch, STR support, concierge, and select field services for property owners in the Madison Valley. We are your first call for anything your home or guests need.</p>
+    </header>
+
+    <section id="home-watch" class="service-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Home Watch & Property Care</h2>
+                <p>Scheduled interior and exterior checks, keyholder service, arrival prep, and seasonal support for absentee owners and STRs. Professional checklists and photo reports after every visit.</p>
+            </div>
+            <table class="pricing-table reveal">
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Price</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Service">Home Watch</td>
+                        <td data-label="Price" class="price-tag">$75–$125</td>
+                        <td data-label="Description">Monthly or bi-weekly property checks</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Service">Arrival Prep</td>
+                        <td data-label="Price" class="price-tag">$95–$175</td>
+                        <td data-label="Description">Home opened, warmed, stocked before arrival</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Service">Winterization</td>
+                        <td data-label="Price" class="price-tag">$175–$350</td>
+                        <td data-label="Description">Full winterization for seasonal closures</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="cta-box reveal">
+                <button class="btn-gold">Schedule Property Care</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="str-support" class="service-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>STR Turnovers & Guest Support</h2>
+                <p>Turnovers, guest coordination, and listing care for Airbnb/VRBO hosts and professional STR managers. We help you maintain 5-star reviews and maximize booking performance.</p>
+            </div>
+            <table class="pricing-table reveal">
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Price</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Service">Turnover Service</td>
+                        <td data-label="Price" class="price-tag">$150–$275</td>
+                        <td data-label="Description">Between-guest checks and coordination</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Service">Guest Coordination</td>
+                        <td data-label="Price" class="price-tag">$45–$65/hr</td>
+                        <td data-label="Description">On-call support for guest issues</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="cta-box reveal">
+                <button class="btn-gold" style="background: var(--range-navy); color: white;">Talk About Your STRs</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="concierge" class="service-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Owner Concierge & Arrival Services</h2>
+                <p>High-touch support for owners and guests. We handle the details so you can enjoy your time in the Madison Valley.</p>
+            </div>
+            <table class="pricing-table reveal">
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Price</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Service">Airport Pickup</td>
+                        <td data-label="Price" class="price-tag">$150–$350</td>
+                        <td data-label="Description">Bozeman or regional airport transfers</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Service">Grocery Stocking</td>
+                        <td data-label="Price" class="price-tag">$45–$95 + groceries</td>
+                        <td data-label="Description">Pre-arrival fridge and pantry stocking</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="cta-box reveal">
+                <button class="btn-gold">Request Concierge Services</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="service-section additional" style="background: #050E19;">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Additional & Coming-Soon Services</h2>
+                <p>As we grow, Madison Range is adding more ways to support your property and lifestyle. Availability may be limited or seasonal.</p>
+            </div>
+            <div class="soon-grid reveal">
+                <div class="soon-card">
+                    <h3>Welding & Equipment Repair</h3>
+                    <p>Field welding, fabrication, trailer and equipment repair.</p>
+                </div>
+                <div class="soon-card">
+                    <h3>Storage Co.</h3>
+                    <p>Secure storage for seasonal equipment, vehicles, and trailers.</p>
+                </div>
+                <div class="soon-card">
+                    <h3>Outdoor & Wellness Rentals</h3>
+                    <p>Mobile saunas, cold plunge, drift boats, and SUPs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="wordmark" style="font-size: 1.5rem; color: var(--saddle-gold); font-weight: 900;">MADISON RANGE</div>
+        <span class="footer-tagline">"One call for everything your Madison Valley property needs."</span>
+        <div class="contact-row">
+            <span>info@madisonrange.com</span>
+            <span>Ennis, Montana</span>
+        </div>
+        <p class="copyright">© 2026 Madison Range Holdings, LLC | Ennis, MT</p>
+    </footer>
+
+    <script>
+        // Drawer Logic
+        const toggle = document.getElementById('mobile-toggle');
+        const drawer = document.getElementById('nav-drawer');
+        toggle.addEventListener('click', () => {
+            toggle.classList.toggle('open');
+            drawer.classList.toggle('active');
+        });
+
+        // Page Animations
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray(".reveal").forEach(elem => {
+            gsap.from(elem, {
+                scrollTrigger: { trigger: elem, start: "top 90%" },
+                duration: 1, y: 30, opacity: 0, ease: "power2.out"
+            });
+        });
+    </script>
+</body>
+</html>

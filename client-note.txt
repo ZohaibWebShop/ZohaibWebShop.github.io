@@ -1,0 +1,514 @@
+
+Purpose: Rebuild site with laser focus on home watch, STR support, and concierge as core services; position other divisions as "coming soon"
+
+1. SITE STRATEGY OVERVIEW
+Core positioning
+"THE Madison Range – Home watch, property care, and concierge for the Madison Valley."
+Business focus (Phase 1)
+Home Watch & Property Care
+STR Turnovers & Guest Support
+Owner Concierge & Arrival Prep
+Future services (Phase 2–3, marked as "coming soon")
+Welding & Field Repair
+Storage for Vehicles & Gear
+Outdoor & Wellness Rentals
+Specialty Trade Coordination
+Workforce Housing for Trades
+
+2. TOP NAVIGATION (5 TABS)
+Visible top-level navigation:
+Home
+Services
+Who We Serve
+About & Contact
+Store (The Madison Range Merch)
+All nine division pages remain live in the backend but are linked from the Services page, not as separate top tabs.
+
+3. HOMEPAGE STRUCTURE
+Hero Section
+Heading (H1):
+"Home Watch & Property Care in the Madison Valley"
+Subheading:
+"Local, year-round oversight for second homes, cabins, ranches, and STRs — one trusted call in Ennis, Montana."
+Buttons:
+Primary (gold): "Request Home Watch"
+Secondary (outline): "See Services"
+Background: Range Navy (#0A1A2F) with subtle Montana landscape or valley overlay (optional)
+
+Core Services Strip (3 cards, link into /services sections)
+Card 1: Home Watch & Property Care
+Icon: house or key symbol
+Short text: "Scheduled checks, keyholder services, arrival prep, and seasonal support."
+Link: /services#home-watch
+Card 2: STR Turnovers & Guest Support
+Icon: calendar or guest symbol
+Short text: "Turnovers, guest coordination, and listing care for Airbnb/VRBO hosts."
+Link: /services#str-support
+Card 3: Owner Concierge & Arrival Prep
+Icon: concierge bell or mountain
+Short text: "Grocery stocking, airport pickup, and high-touch owner services."
+Link: /services#concierge
+
+"One Call" Vision Block
+Heading (H2):
+"Your Only Call in the Madison Valley"
+Copy:
+"For our clients, we are the only call they make when anything comes up at their home or rental – we either handle it ourselves or coordinate the right local pro."
+Link:
+"Learn more about our vision" → /about-contact
+
+Now vs. Coming Soon Block
+Two-column layout:
+Available Now
+Coming Soon
+Home Watch & Property Care
+Welding & Field Repair
+STR Turnovers & Guest Support
+Storage for Vehicles & Gear
+Owner Concierge & Arrival Prep
+Outdoor & Wellness Rentals
+
+
+Workforce Housing for Trades
+
+
+Bottom text:
+"Madison Range is growing into a complete property and lifestyle platform. Today, we focus on what owners need most: reliable home watch, STR support, and concierge."
+Link:
+"See future services" → /future-services (simple page listing all nine divisions with status labels)
+
+Final CTA Section
+Heading:
+"Ready to protect your Madison Valley investment?"
+Button:
+"Schedule a free property intro call"
+Contact info:
+Email: info@madisonrange.com
+Location: Ennis, Montana
+
+4. SERVICES PAGE (/services)
+Page title: "Madison Range Services"
+Intro copy:
+"Madison Range provides home watch, STR support, concierge, and select field services for property owners in the Madison Valley. We are your first call for anything your home or guests need."
+
+Section A: Home Watch & Property Care (anchor: #home-watch)
+Heading (H2):
+"Home Watch & Property Care"
+Copy:
+"Scheduled interior and exterior checks, keyholder service, arrival prep, and seasonal support for absentee owners and STRs. Professional checklists and photo reports after every visit."
+Services Table:
+Service
+Price
+Description
+Home Watch
+$75–$125
+Monthly or bi-weekly property checks
+Arrival Prep
+$95–$175
+Home opened, warmed, stocked before arrival
+Project Oversight
+$45–$65/hr
+Coordinate contractors and monitor work
+Keyholder Services
+$25–$45/mo
+Secure key management for you and vendors
+Winterization
+$175–$350
+Full winterization for seasonal closures
+Storm Checks
+$75–$125
+Post-storm property inspections
+Spring Openings
+$175–$350
+Reopen and prep property for season
+
+
+CTA Button:
+"Schedule Property Care"
+
+Section B: STR Turnovers & Guest Support (anchor: #str-support)
+Heading (H2):
+"STR Turnovers & Guest Support"
+Copy:
+"Turnovers, guest coordination, and listing care for Airbnb/VRBO hosts and professional STR managers. We help you maintain 5-star reviews and maximize booking performance."
+Services Table:
+Service
+Price
+Description
+Turnover Service
+$150–$275
+Between-guest checks and coordination
+Guest Coordination
+$45–$65/hr
+On-call support for guest issues
+Listing Enhancements
+Custom
+Photos, staging, and listing optimization
+
+
+CTA Button:
+"Talk About Your STRs"
+
+Section C: Owner Concierge & Arrival Services (anchor: #concierge)
+Heading (H2):
+"Owner Concierge & Arrival Services"
+Copy:
+"High-touch support for owners and guests. We handle the details so you can enjoy your time in the Madison Valley."
+Services Table:
+Service
+Price
+Description
+Airport Pickup
+$150–$350
+Bozeman or regional airport transfers
+Grocery Stocking
+$45–$95 + groceries
+Pre-arrival fridge and pantry stocking
+Arrival Prep
+$95–$175
+Lights, heat, firewood, welcome setup
+Private Tours
+$250–$650
+Custom valley tours and experiences
+Experience Planning
+Custom
+Fishing, dining, activity coordination
+
+
+CTA Button:
+"Request Concierge Services"
+
+Section D: Additional & Coming-Soon Services
+Heading (H2):
+"Additional & Coming-Soon Services"
+Copy:
+"As we grow, Madison Range is adding more ways to support your property and lifestyle. Availability may be limited or seasonal. Contact us to learn more."
+Service Groups (brief bullets, link to individual pages):
+Welding & Equipment Repair
+Field welding, fabrication, trailer and equipment repair. [Link: /welding]
+Specialty Trade Coordination
+HVAC, electrical, plumbing, septic & well, internet & satellite, heavy equipment operators. [Link: /specialty-coordination]
+Storage for Vehicles, Trailers & Gear
+Secure storage for seasonal equipment and vehicles. [Link: /storage]
+Outdoor & Wellness Rentals
+Mobile saunas, cold plunge, drift boats, SUPs, kayaks, river tubes. [Link: /outdoor-rentals and /mobile-wellness]
+Bottom text:
+"Interested in these services? Email us at info@madisonrange.com or call to discuss availability."
+
+5. WHO WE SERVE PAGE (/who-we-serve)
+Page title: "Who We Serve in the Madison Valley"
+Intro copy:
+"Madison Range supports property owners, STR hosts, guests, and locals with reliable, Montana-built solutions."
+
+Section A: Absentee & Seasonal Homeowners
+Heading (H3):
+"Absentee & Seasonal Homeowners"
+Copy:
+"Second homes, cabins, and ranch properties owned by people who can't be here year-round. You need local eyes, reliable keyholder service, and someone who understands Montana winters."
+What we provide:
+Scheduled home watch and photo reports
+Storm and freeze checks after major weather
+Arrival prep and seasonal transitions
+Single point of contact for maintenance and emergencies
+
+Section B: Short-Term Rental Owners & Managers
+Heading (H3):
+"Short-Term Rental Owners & Managers"
+Copy:
+"Airbnb/VRBO hosts and professional STR managers who need reliable local support to maintain guest satisfaction and protect rental income."
+What we provide:
+Between-guest turnovers and condition checks
+On-call response for guest issues
+Listing care and photo updates
+Coordination with cleaners and maintenance vendors
+
+Section C: Local Ranches, Trades & Businesses
+Heading (H3):
+"Local Ranches, Trades & Businesses"
+Copy:
+"Ranches, contractors, and operators who need welding, field repair, storage, and project support."
+What we provide:
+Field welding and equipment repair
+Storage for vehicles, trailers, and gear
+Trade coordination and project oversight
+
+"One Call" Block
+Heading (H3):
+"One Call for Everything"
+Copy:
+"For our clients, we are the only call they make when anything comes up at their home or rental – we either handle it ourselves or coordinate the right local pro and stay accountable end-to-end."
+
+6. ABOUT & CONTACT PAGE (/about-contact)
+Page title: "About Madison Range"
+
+Section A: Our Story
+Heading (H2):
+"About Madison Range"
+Copy:
+"Madison Range is a multi-division service company based in Ennis, Montana. We support property owners, STR hosts, guests, and locals with reliable, Montana-built solutions – from home watch and turnovers to welding and field services.
+Over time, we are building a regional platform where property owners only need one call for everything their home and guests require. Today, we focus on what owners need most: home watch, STR support, and concierge."
+
+Section B: Now vs. Soon
+Heading (H3):
+"What We Do Now – and What's Coming"
+Two-column block (same as homepage):
+Now
+Soon
+Home Watch & Property Care
+Welding & Field Repair
+STR Turnovers & Guest Support
+Storage for Vehicles & Gear
+Owner Concierge & Arrival Prep
+Outdoor & Wellness Rentals
+
+
+Workforce Housing for Trades
+
+
+Bottom text:
+"We are committed to growing responsibly – adding services and capacity as we build a strong base of recurring clients and a reliable team."
+
+Section C: Contact & Request Service
+Heading (H3):
+"Get in Touch"
+Copy:
+"Ready to protect your Madison Valley investment? Let's talk about your property and what you need."
+Contact Block:
+Email: info@madisonrange.com
+Location: Ennis, Montana
+Phone: [Your Number]
+Simple Contact Form:
+Name (required)
+Email (required)
+Phone (optional)
+Property Location (text field)
+Property Type: dropdown (Second Home, STR, Ranch, Other)
+Message (textarea)
+Button: "Request Service"
+
+7. STORE PAGE (/store)
+Page title: "The Madison Range Store"
+
+Intro Block
+Heading (H2):
+"THE Madison Range"
+Copy:
+"THE Madison Range is more than a service company – it's a way of living in the Madison Valley. Our hats, shirts, and gear let owners, guests, and locals show they're part of that story.
+A portion of profits supports our long-term mission: building workforce housing and attracting skilled trades to the Madison Valley, strengthening the community for everyone."
+
+Product Grid
+Use standard e-commerce layout with product cards:
+Product image
+Product name
+Price
+"Add to Cart" button
+Suggested categories:
+Hats (trucker, snapback, beanie)
+T-shirts (crew, V-neck, long-sleeve)
+Hoodies & outerwear
+Accessories (stickers, mugs, koozies)
+
+8. FUTURE SERVICES PAGE (/future-services)
+Optional simple page showing all nine divisions with status labels.
+Page title: "Madison Range Divisions & Future Services"
+Intro:
+"Madison Range operates multiple divisions under one unified brand. Here's what we offer today and what's coming soon."
+
+Division Grid (9 cards)
+Each card includes:
+Icon or silhouette
+Division name
+Status badge: "Available Now" (green) or "Coming Soon" (gold)
+Short 1-sentence description
+Link to division page
+Available Now:
+Home & Property Co. – Home watch, keyholder, arrival prep, project oversight
+Rentals & Turnovers – STR turnovers, guest coordination, listing care
+Concierge Services – Airport pickup, grocery stocking, experience planning
+Coming Soon:
+Seasonal Services – Winterization, storm checks, holiday décor, spring openings
+Welding Co. – Field welding, fabrication, equipment repair
+Specialty Service Coordination – HVAC, electrical, plumbing, septic, internet, heavy equipment
+Storage Co. – Vehicle, trailer, and gear storage
+Mobile Wellness – Portable sauna and cold plunge rentals
+Outdoor Gear Rentals – Drift boats, SUPs, kayaks, tubes, fishing packages
+Bottom CTA:
+"Interested in a coming-soon service? Contact us to learn more about availability and timeline."
+
+9. INDIVIDUAL DIVISION PAGES (Backend, linked from /services and /future-services)
+Keep all nine division pages from the original blueprint, but mark them clearly:
+Available Now pages: /home-property, /rentals-turnovers, /concierge (full detail, pricing, CTAs)
+Coming Soon pages: /seasonal-services, /welding, /specialty-coordination, /storage, /mobile-wellness, /outdoor-gear-rentals
+For "Coming Soon" pages, add a banner at the top:
+"This service is launching soon. Availability may be limited. Contact us at info@madisonrange.com to express interest or check status."
+Use the same structure from the original blueprint for all pages (hero, services table, CTA). Reuse existing content with status labels added.
+
+10. GLOBAL ELEMENTS
+Header
+Logo: MADISON RANGE wordmark or MR monogram
+Navigation: Home | Services | Who We Serve | About & Contact | Store
+CTA button (top right): "Request Service" (gold, links to contact form)
+Footer
+Logo (small, grayscale or white)
+Address: Ennis, Montana
+Email: info@madisonrange.com
+Phone: [Your Number]
+Links: Privacy Policy | Terms of Service
+Social icons (if applicable): Instagram, Facebook
+Copyright: © {dynamic year} Madison Range Holdings, LLC
+Repeating "One Call" tagline
+On every page footer, add small centered text:
+"One call for everything your Madison Valley property needs."
+
+11. BRAND COLORS (CSS Tokens)
+--range-navy: #0A1A2F;
+--saddle-gold: #C49A6C;
+--bone-white: #F2EDE4;
+--slate-gray: #4A4F57;
+Usage guidelines
+Primary backgrounds: Range Navy
+CTAs and accents: Saddle Gold
+Body text on dark: Bone White
+Body text on light: Slate Gray
+Hover states: lighten/darken by 10%
+
+12. TYPOGRAPHY (CSS Tokens)
+--font-primary: 'Montserrat', 'Avenir Next', 'Proxima Nova', sans-serif;
+--font-weight-regular: 400;
+--font-weight-bold: 700;
+--font-weight-heavy: 800;
+--font-size-h1: 3rem; /* 48px 
+/--font-size-h2: 2rem; / 32px 
+/--font-size-h3: 1.5rem; / 24px 
+/--font-size-body: 1rem; / 16px 
+/--font-size-small: 0.875rem; / 14px */
+
+13. REUSABLE COMPONENTS
+Division Card Component
+Icon (SVG or image)
+Title (H3)
+Short description (1 sentence, max 15 words)
+Status badge (Available Now / Coming Soon)
+Link button ("Learn More")
+Pricing Table Component
+Service name (left-aligned)
+Price range (center)
+Short description (right-aligned or below)
+Responsive: stacks vertically on mobile
+CTA Button Component
+Primary style: Saddle Gold background, Range Navy text, bold weight
+Secondary style: Outline (Saddle Gold border, transparent fill)
+Hover: darken background 10%, add subtle shadow
+Hero Component
+Full-width background (navy or image)
+Centered or left-aligned text block
+H1 + subheadline + 1-2 buttons
+Optional overlay for image backgrounds (0.6 opacity navy)
+
+14. MOBILE RESPONSIVENESS
+Breakpoints
+Mobile: < 768px
+Tablet: 768px – 1024px
+Desktop: > 1024px
+Mobile Navigation
+Hamburger menu icon (top right)
+Slide-out or dropdown menu
+CTA button remains visible (stacked or shrunk)
+Mobile Adjustments
+Hero text: reduce H1 to 2rem, subheadline to 1rem
+Service cards: stack vertically, full width
+Pricing tables: stack rows, simplify columns
+Two-column "Now vs. Soon" blocks: stack vertically
+
+15. SEO & META
+Homepage Meta
+Title: "Home Watch & Property Care in the Madison Valley | The Madison Range"
+Description: "Local, year-round home watch, STR turnovers, and concierge services for Madison Valley property owners. Based in Ennis, Montana."
+Keywords: home watch Ennis Montana, Madison Valley property care, STR turnovers Montana, vacation rental management Ennis
+Services Page Meta
+Title: "Property Care Services | The Madison Range – Ennis, Montana"
+Description: "Home watch, STR turnovers, concierge, and field services for Madison Valley homeowners and STR operators."
+Store Page Meta
+Title: "The Madison Range Store | Montana Gear & Merch"
+Description: "Hats, shirts, and gear inspired by the Madison Valley. Show your Madison Range pride."
+
+16. ANALYTICS & TRACKING
+Recommended setup:
+Google Analytics 4 (GA4) for traffic and behavior
+Conversion tracking on:
+"Request Service" button clicks
+Contact form submissions
+Store purchases
+Heatmap tool (optional): Hotjar or Microsoft Clarity
+
+17. IMPLEMENTATION CHECKLIST
+Developer tasks:
+[ ] Set up navigation with 5 top-level tabs
+[ ] Build homepage with hero, core services cards, vision block, now/soon table
+[ ] Build /services page with 4 sections (home watch, STR, concierge, coming soon)
+[ ] Build /who-we-serve page with 3 customer segments + one-call block
+[ ] Build /about-contact page with story, owner bio, now/soon block, contact form
+[ ] Build /store page with intro block + product grid
+[ ] Build /future-services page with 9-division grid and status badges
+[ ] Update all 9 individual division pages with "Available Now" or "Coming Soon" banners
+[ ] Set up global header, footer, and CTA components
+[ ] Apply brand colors and typography tokens
+[ ] Ensure mobile responsiveness across all pages
+[ ] Add SEO meta tags to key pages
+[ ] Set up analytics and conversion tracking
+[ ] Test all links, forms, and CTAs
+[ ] Review with client before launch
+
+18. CONTENT MIGRATION FROM ORIGINAL BLUEPRINT
+Pages to keep as-is (with status labels added):
+/home-property → Available Now
+/rentals-turnovers → Available Now
+/concierge → Available Now
+/seasonal-services → Coming Soon (merge into /services or keep as standalone)
+/welding → Coming Soon
+/specialty-coordination → Coming Soon
+/storage → Coming Soon
+/mobile-wellness → Coming Soon
+/outdoor-gear-rentals → Coming Soon
+Content to consolidate:
+Merge key content from /seasonal-services into /services page, Section A (Home Watch)
+Merge key content from /concierge into /services page, Section C
+Keep full division pages live for SEO and future activation
+
+19. LAUNCH TIMELINE RECOMMENDATION
+Phase 1 (Week 1–2): Core pages
+Homepage
+/services (Sections A, B, C only)
+/about-contact
+Global header/footer
+Phase 2 (Week 2–3): Secondary pages
+/who-we-serve
+/future-services
+Update 9 division pages with status labels
+Phase 3 (Week 3–4): Store & polish
+/store with product grid
+Mobile testing and optimization
+SEO meta tags
+Analytics setup
+Phase 4 (Week 4+): Soft launch & feedback
+Soft launch to select clients and partners
+Gather feedback
+Make adjustments before full public launch
+
+20. MAINTENANCE & UPDATES
+Quarterly reviews
+Update "Coming Soon" status as services launch
+Add new client testimonials or case studies
+Refresh homepage hero image seasonally (summer/winter valley scenes)
+Review analytics and adjust CTAs based on conversion data
+Annual updates
+Refresh pricing tables
+Update owner bio and company story
+Add new divisions or services as they launch
+Review SEO performance and adjust meta tags
+
+END OF BLUEPRINT
+For questions or clarifications, contact:
+Chris Biggerstaff
+Email: info@madisonrange.com
+Location: Ennis, Montana

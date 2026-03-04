@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Store | THE Madison Range – Gear & Merch</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        :root {
+            --range-navy: #0A1A2F;
+            --saddle-gold: #C49A6C;
+            --bone-white: #F2EDE4;
+            --slate-gray: #4A4F57;
+            --dark-bg: #050E19;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--range-navy); color: var(--bone-white); line-height: 1.6; }
+
+        /* --- NAVIGATION & LOGO --- */
+        nav { position: fixed; top: 0; width: 100%; height: 100px; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; background: rgba(10, 26, 47, 0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .logo-box { display: flex; align-items: center; height: 65px; text-decoration: none; }
+        .logo-svg { height: 100%; width: auto; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { color: var(--bone-white); text-decoration: none; text-transform: uppercase; font-size: 0.75rem; font-weight: 800; letter-spacing: 1.5px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--saddle-gold); }
+        .btn-gold { background: var(--saddle-gold); color: var(--range-navy); padding: 14px 28px; border: none; font-weight: 900; text-transform: uppercase; cursor: pointer; transition: 0.3s; letter-spacing: 1px; }
+        .btn-gold:hover { background: white; transform: translateY(-3px); }
+
+        /* --- MOBILE TOGGLE & DRAWER --- */
+        .mobile-toggle { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1100; }
+        .mobile-toggle span { width: 30px; height: 3px; background: var(--saddle-gold); transition: 0.3s; }
+        .nav-drawer { position: fixed; top: 0; right: -100%; width: 85%; height: 100vh; background: var(--range-navy); z-index: 1050; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; padding: 140px 40px; gap: 2rem; border-left: 2px solid var(--saddle-gold); }
+        .nav-drawer.active { right: 0; }
+        .nav-drawer a { color: var(--bone-white); font-size: 1.5rem; font-weight: 900; text-transform: uppercase; text-decoration: none; }
+
+        /* --- BREADCRUMB --- */
+        .breadcrumb-container { padding: 130px 5% 20px; }
+        .breadcrumb { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 800; }
+        .breadcrumb a { color: var(--saddle-gold); text-decoration: none; }
+        .breadcrumb span { margin: 0 10px; opacity: 0.4; }
+
+        /* --- HEADER SECTION (Matches service.html) --- */
+        .page-header { padding: 40px 5% 80px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .page-header h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 900; text-transform: uppercase; margin-bottom: 1.5rem; }
+        .page-header p { max-width: 800px; font-size: 1.2rem; opacity: 0.9; border-left: 4px solid var(--saddle-gold); padding-left: 25px; }
+
+        /* --- PRODUCT GRID --- */
+        .container { padding: 80px 5%; }
+        .category-label { font-weight: 900; text-transform: uppercase; letter-spacing: 3px; color: var(--saddle-gold); margin-bottom: 40px; display: block; border-left: 4px solid var(--saddle-gold); padding-left: 15px; }
+        
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; margin-bottom: 80px; }
+        .product-card { background: white; color: var(--range-navy); transition: 0.4s; position: relative; overflow: hidden; }
+        .product-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
+        
+        /* Fixed: Using Unsplash links for specific categories */
+        .product-img { width: 100%; height: 320px; object-fit: cover; }
+        
+        .product-info { padding: 25px; text-align: center; }
+        .product-name { font-weight: 900; text-transform: uppercase; font-size: 1.1rem; margin-bottom: 8px; }
+        .product-price { font-weight: 700; color: var(--saddle-gold); font-size: 1.2rem; margin-bottom: 20px; display: block; }
+        
+        .add-to-cart { 
+            width: 100%; padding: 15px; border: none; background: var(--range-navy); color: white; 
+            font-weight: 800; text-transform: uppercase; cursor: pointer; transition: 0.3s;
+        }
+        .add-to-cart:hover { background: var(--saddle-gold); color: var(--range-navy); }
+        
+        /* --- FOOTER --- */
+        footer { padding: 100px 5% 40px; background: #050E19; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-tagline { font-style: italic; opacity: 0.5; margin: 30px 0; display: block; }
+        .contact-row { display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; font-weight: 700; }
+        .copyright { font-size: 0.7rem; opacity: 0.3; text-transform: uppercase; letter-spacing: 2px; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: flex; }
+            .product-grid { grid-template-columns: 1fr; }
+            .mobile-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+            .mobile-toggle.open span:nth-child(2) { opacity: 0; }
+            .mobile-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="midsonrange.html" class="logo-box">
+            <svg class="logo-svg" viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="45" width="280" height="6" fill="white"></rect><text x="315" y="60" font-family="Montserrat" font-weight="900" font-size="52" fill="white">THE</text><text x="20" y="115" font-family="Montserrat" font-weight="900" font-size="62" letter-spacing="2" fill="white">MADISON</text><rect x="20" y="145" width="85" height="8" fill="white"></rect><text x="120" y="165" font-family="Montserrat" font-weight="900" font-size="62" letter-spacing="4" fill="white">RANGE</text><g transform="translate(450, 20)"><path d="M0 140 L45 30 L90 140 L135 30 L180 140" stroke="white" stroke-width="16" fill="none"></path><path d="M125 100 L180 100" stroke="white" stroke-width="16" fill="none"></path></g></svg>
+        </a>
+        <div class="nav-links">
+            <a href="midsonrange.html">Home</a>
+            <a href="service.html">Services</a>
+            <a href="who-we-are.html">Who We Serve</a>
+            <a href="about.html">About & Contact</a>
+            <a href="Store.html" style="color: var(--saddle-gold);">Store</a>
+            <button class="btn-gold" onclick="window.location.href='about.html#contact'">Request Service</button>
+        </div>
+        <div class="mobile-toggle" id="mobile-toggle">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <div class="nav-drawer" id="nav-drawer">
+        <a href="midsonrange.html">Home</a>
+        <a href="service.html">Services</a>
+        <a href="who-we-are.html">Who We Serve</a>
+        <a href="about.html">About & Contact</a>
+        <a href="Store.html">Store</a>
+        <button class="btn-gold" style="margin-top: 20px;" onclick="window.location.href='about.html#contact'">Request Service</button>
+    </div>
+
+    <div class="breadcrumb-container">
+        <div class="breadcrumb">
+            <a href="midsonrange.html">Home</a> <span>/</span> Store
+        </div>
+    </div>
+
+    <header class="page-header">
+        <h1>The Store</h1>
+        <p>THE Madison Range is more than a service company – it's a way of living in the Madison Valley. Our hats, shirts, and gear let owners, guests, and locals show they're part of that story. A portion of profits supports our long-term mission: building workforce housing and attracting skilled trades to the Madison Valley, strengthening the community for everyone.</p>
+    </header>
+
+    <section class="container">
+        
+        <span class="category-label">Hats (Trucker, Snapback)</span>
+        <div class="product-grid">
+            <div class="product-card reveal">
+                <img src="https://images.unsplash.com/photo-1588850567047-3f27541bdd0d?auto=format&fit=crop&q=80&w=600" class="product-img" alt="Range Trucker Hat">
+                <div class="product-info">
+                    <span class="product-name">Range Trucker Hat</span>
+                    <span class="product-price">$32.00</span>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&q=80&w=600" class="product-img" alt="Snapback Hat">
+                <div class="product-info">
+                    <span class="product-name">Valley Snapback</span>
+                    <span class="product-price">$30.00</span>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <span class="category-label">T-shirts & Hoodies</span>
+        <div class="product-grid">
+            <div class="product-card reveal">
+                <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&q=80&w=600" class="product-img" alt="Crew Tee">
+                <div class="product-info">
+                    <span class="product-name">Logo Crew Tee</span>
+                    <span class="product-price">$35.00</span>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card reveal">
+                <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&q=80&w=600" class="product-img" alt="Heavyweight Hoodie">
+                <div class="product-info">
+                    <span class="product-name">Heavyweight Hoodie</span>
+                    <span class="product-price">$65.00</span>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+        <div class="wordmark" style="font-size: 1.5rem; color: var(--saddle-gold); font-weight: 900;">MADISON RANGE</div>
+        <span class="footer-tagline">"One call for everything your Madison Valley property needs."</span>
+        <div class="contact-row">
+            <span>info@madisonrange.com</span>
+            <span>Ennis, Montana</span>
+        </div>
+        <p class="copyright">© 2026 Madison Range Holdings, LLC | Ennis, MT</p>
+    </footer>
+
+    <script>
+        const toggle = document.getElementById('mobile-toggle');
+        const drawer = document.getElementById('nav-drawer');
+        toggle.addEventListener('click', () => {
+            toggle.classList.toggle('open');
+            drawer.classList.toggle('active');
+        });
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray(".reveal").forEach(elem => {
+            gsap.from(elem, {
+                scrollTrigger: { trigger: elem, start: "top 90%" },
+                duration: 1, y: 30, opacity: 0, ease: "power2.out", stagger: 0.2
+            });
+        });
+    </script>
+</body>
+</html>

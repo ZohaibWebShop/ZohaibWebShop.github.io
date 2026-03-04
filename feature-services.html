@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madison Range Divisions & Future Services | The Madison Range</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        :root {
+            --range-navy: #0A1A2F;
+            --saddle-gold: #C49A6C;
+            --bone-white: #F2EDE4;
+            --dark-bg: #050E19;
+            --available-green: #27ae60;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: var(--range-navy); 
+            color: var(--bone-white); 
+            line-height: 1.6;
+            padding-bottom: 80px; 
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed; top: 0; width: 100%; height: 100px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; background: rgba(10, 26, 47, 0.95);
+            backdrop-filter: blur(10px); z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .logo-box { height: 60px; text-decoration: none; }
+        .logo-svg { height: 100%; width: auto; }
+
+        /* --- HEADER --- */
+        .future-header { padding: 160px 5% 60px; text-align: center; }
+        .future-header h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; text-transform: uppercase; margin-bottom: 1.5rem; }
+        .future-header p { max-width: 800px; margin: 0 auto; font-size: 1.1rem; opacity: 0.8; }
+
+        /* --- DIVISION GRID --- */
+        .container { padding: 40px 5%; }
+        .division-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+        }
+
+        .division-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 40px;
+            position: relative;
+            transition: 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 300px;
+        }
+        .division-card:hover {
+            border-color: var(--saddle-gold);
+            background: rgba(196, 154, 108, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .status-badge {
+            position: absolute; top: 20px; right: 20px;
+            font-size: 0.65rem; font-weight: 900;
+            padding: 5px 12px; text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .badge-now { background: var(--available-green); color: white; }
+        .badge-soon { background: var(--saddle-gold); color: var(--range-navy); }
+
+        .division-card h3 { font-size: 1.4rem; font-weight: 900; text-transform: uppercase; margin-bottom: 15px; margin-top: 20px; }
+        .division-card p { font-size: 0.95rem; opacity: 0.7; margin-bottom: 25px; flex-grow: 1; }
+
+        .learn-more {
+            font-weight: 800; text-transform: uppercase; font-size: 0.75rem;
+            letter-spacing: 2px; color: var(--saddle-gold); text-decoration: none;
+            display: inline-flex; align-items: center; gap: 10px;
+        }
+
+        /* --- BOTTOM CTA --- */
+        .footer-cta { text-align: center; padding: 80px 5%; background: var(--dark-bg); margin-top: 60px; }
+        .footer-cta h2 { font-size: 1.8rem; margin-bottom: 20px; text-transform: uppercase; }
+
+        /* --- STICKY BAR --- */
+        .sticky-bar {
+            position: fixed; bottom: 0; width: 100%; height: 60px;
+            background: var(--saddle-gold); color: var(--range-navy);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 2000; font-weight: 900; text-transform: uppercase; letter-spacing: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .division-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="/" class="logo-box">
+            <svg class="logo-svg" viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg">
+                <rect x="20" y="45" width="280" height="6" fill="white"/>
+                <text x="315" y="60" font-family="Montserrat" font-weight="900" font-size="52" fill="white">THE</text>
+                <text x="20" y="115" font-family="Montserrat" font-weight="900" font-size="62" fill="white">MADISON RANGE</text>
+                <g transform="translate(450, 20)">
+                    <path d="M0 140 L45 30 L90 140 L135 30 L180 140" stroke="white" stroke-width="16" fill="none"/>
+                    <path d="M125 100 L180 100" stroke="white" stroke-width="16" fill="none"/>
+                </g>
+            </svg>
+        </a>
+    </nav>
+
+    <header class="future-header">
+        <h1>Madison Range Divisions <br>& Future Services</h1>
+        <p>Madison Range operates multiple divisions under one unified brand. Here's what we offer today and what's coming soon to the Madison Valley.</p>
+    </header>
+
+    <section class="container">
+        <div class="division-grid">
+            
+            <div class="division-card reveal">
+                <div class="status-badge badge-now">Available Now</div>
+                <h3>Home & Property Co.</h3>
+                <p>Professional home watch, keyholder service, arrival prep, and project oversight.</p>
+                <a href="/home-property" class="learn-more">Learn More →</a>
+            </div>
+
+            <div class="division-card reveal">
+                <div class="status-badge badge-now">Available Now</div>
+                <h3>Rentals & Turnovers</h3>
+                <p>Reliable STR turnovers, guest coordination, and specialized listing care.</p>
+                <a href="/rentals-turnovers" class="learn-more">Learn More →</a>
+            </div>
+
+            <div class="division-card reveal">
+                <div class="status-badge badge-now">Available Now</div>
+                <h3>Concierge Services</h3>
+                <p>High-touch airport pickup, pre-arrival grocery stocking, and experience planning.</p>
+                <a href="/concierge" class="learn-more">Learn More →</a>
+            </div>
+
+            <div class="division-card reveal">
+                <div class="status-badge badge-soon">Coming Soon</div>
+                <h3>Seasonal Services</h3>
+                <p>Full winterization, storm checks, holiday décor, and spring property openings.</p>
+                <a href="/seasonal-services" class="learn-more">Check Status →</a>
+            </div>
+
+            <div class="division-card reveal">
+                <div class="status-badge badge-soon">Coming Soon</div>
+                <h3>Welding Co.</h3>
+                <p>Field welding, custom fabrication, and agricultural equipment repair.</p>
+                <a href="/welding" class="learn-more">Check Status →</a>
+            </div>
+
+            <div class="division-card reveal">
+                <div class="status-badge badge-soon">Coming Soon</div>
+                <h3>Specialty Service Coordination</h3>
+                <p>Coordination for HVAC, electrical, plumbing, septic, and heavy equipment ops.</p>
+                <a href="/specialty-coordination" class="learn-more">Check Status →</a>
+            </div>
+
+            <div class="division-card reveal">
+                <div class="status-badge badge-soon">Coming Soon</div>
+                <h3>Storage Co.</h3>
+                <p>Secure, local storage solutions for vehicles, trailers, and seasonal gear.</p>
+                <a href="/storage" class="learn-more">Check Status →</a>
+            </div>
+
+            <div class="division-card reveal">
+                <div class="status-badge badge-soon">Coming Soon</div>
+                <h3>Mobile Wellness</h3>
+                <p>On-site delivery of portable saunas and cold plunge wellness rentals.</p>
+                <a href="/mobile-wellness" class="learn-more">Check Status →</a>
+            </div>
+
+            <div class="division-card reveal">
+                <div class="status-badge badge-soon">Coming Soon</div>
+                <h3>Outdoor Gear Rentals</h3>
+                <p>Rental packages for drift boats, SUPs, kayaks, and specialized fishing gear.</p>
+                <a href="/outdoor-gear-rentals" class="learn-more">Check Status →</a>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="footer-cta reveal">
+        <h2>Interested in a coming-soon service?</h2>
+        <p style="margin-bottom: 30px;">Contact us to learn more about availability and our launch timeline.</p>
+        <button style="background:var(--saddle-gold); color:var(--range-navy); padding:18px 40px; border:none; font-weight:900; text-transform:uppercase; cursor:pointer;" onclick="window.location.href='/about-contact'">Inquire Now</button>
+    </section>
+
+    <div class="sticky-bar">
+        One Call for Everything your Madison Valley property needs
+    </div>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray(".reveal").forEach(elem => {
+            gsap.from(elem, {
+                scrollTrigger: { trigger: elem, start: "top 90%" },
+                duration: 1, y: 30, opacity: 0, ease: "power2.out", stagger: 0.1
+            });
+        });
+    </script>
+</body>
+</html>

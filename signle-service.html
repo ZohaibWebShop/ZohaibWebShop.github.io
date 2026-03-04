@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Division Details | THE Madison Range</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        :root {
+            --range-navy: #0A1A2F;
+            --saddle-gold: #C49A6C;
+            --bone-white: #F2EDE4;
+            --slate-gray: #4A4F57;
+            --dark-bg: #050E19;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: var(--range-navy); 
+            color: var(--bone-white); 
+            line-height: 1.6;
+            padding-bottom: 60px; 
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed; top: 0; width: 100%; height: 100px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; background: rgba(10, 26, 47, 0.95);
+            backdrop-filter: blur(10px); z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .logo-box { height: 60px; text-decoration: none; }
+        .logo-svg { height: 100%; width: auto; }
+
+        /* --- STATUS BANNER (For Coming Soon Pages) --- */
+        .status-banner {
+            background: var(--saddle-gold);
+            color: var(--range-navy);
+            text-align: center;
+            padding: 12px 5%;
+            font-weight: 900;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 100px; /* Below Nav */
+        }
+
+        /* --- BREADCRUMB --- */
+        .breadcrumb-container { padding: 30px 5% 10px; }
+        .breadcrumb { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 800; }
+        .breadcrumb a { color: var(--saddle-gold); text-decoration: none; }
+        .breadcrumb span { margin: 0 10px; opacity: 0.4; }
+
+        /* --- DIVISION HERO --- */
+        .div-hero { padding: 40px 5% 80px; }
+        .div-hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 900; text-transform: uppercase; margin-bottom: 1.5rem; color: var(--bone-white); }
+        .div-hero p { max-width: 800px; font-size: 1.2rem; opacity: 0.9; border-left: 4px solid var(--saddle-gold); padding-left: 25px; }
+
+        /* --- CONTENT SECTIONS --- */
+        .div-section { padding: 80px 5%; }
+        .light-bg { background-color: var(--bone-white); color: var(--range-navy); }
+        .container { /* max-width removed for wider layout */ }
+        
+        .grid-2 { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; }
+
+        /* --- SERVICES LIST --- */
+        .service-details h2 { font-size: 2rem; text-transform: uppercase; font-weight: 900; margin-bottom: 30px; }
+        .detail-list { list-style: none; }
+        .detail-list li { margin-bottom: 20px; padding-left: 30px; position: relative; font-weight: 700; font-size: 1.1rem; }
+        .detail-list li::before { content: "—"; position: absolute; left: 0; color: var(--saddle-gold); font-weight: 900; }
+
+        /* --- PRICING TABLE --- */
+        .price-table { width: 100%; border-collapse: collapse; margin-top: 40px; }
+        .price-table th { text-align: left; padding: 15px; border-bottom: 3px solid var(--saddle-gold); text-transform: uppercase; font-weight: 900; font-size: 0.8rem; }
+        .price-table td { padding: 20px 15px; border-bottom: 1px solid rgba(0,0,0,0.1); }
+        .price-tag { font-weight: 900; color: var(--saddle-gold); }
+
+        /* --- BUTTONS --- */
+        .cta-area { margin-top: 50px; }
+        .btn-gold { 
+            background: var(--saddle-gold); color: var(--range-navy); 
+            padding: 20px 45px; border: none; font-weight: 900; 
+            text-transform: uppercase; cursor: pointer; font-size: 1rem;
+            transition: 0.3s;
+        }
+        .btn-gold:hover { background: var(--range-navy); color: white; }
+
+        /* --- STICKY BOTTOM BAR --- */
+        .sticky-bar {
+            position: fixed; bottom: 0; width: 100%; height: 60px;
+            background: var(--saddle-gold); color: var(--range-navy);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 2000; font-weight: 900; text-transform: uppercase;
+            letter-spacing: 2px; font-size: 0.85rem; text-align: center;
+        }
+
+        @media (max-width: 992px) {
+            .grid-2 { grid-template-columns: 1fr; gap: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="/" class="logo-box">
+            <svg class="logo-svg" viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg">
+                <rect x="20" y="45" width="280" height="6" fill="white"/>
+                <text x="315" y="60" font-family="Montserrat" font-weight="900" font-size="52" fill="white">THE</text>
+                <text x="20" y="115" font-family="Montserrat" font-weight="900" font-size="62" fill="white">MADISON RANGE</text>
+                <g transform="translate(450, 20)">
+                    <path d="M0 140 L45 30 L90 140 L135 30 L180 140" stroke="white" stroke-width="16" fill="none"/>
+                    <path d="M125 100 L180 100" stroke="white" stroke-width="16" fill="none"/>
+                </g>
+            </svg>
+        </a>
+        <div class="nav-links">
+            <button class="btn-gold" style="padding:10px 20px; font-size:0.7rem;" onclick="window.location.href='/about-contact'">Request Service</button>
+        </div>
+    </nav>
+
+    <div class="status-banner">
+        This service is launching soon. Availability may be limited. Contact us to check status.
+    </div>
+
+    <div class="breadcrumb-container">
+        <div class="breadcrumb">
+            <a href="/">Home</a> <span>/</span> <a href="/future-services">Divisions</a> <span>/</span> Home & Property Co.
+        </div>
+    </div>
+
+    <header class="div-hero">
+        <div class="container">
+            <span class="section-label" style="color:var(--saddle-gold); font-weight:800; text-transform:uppercase; letter-spacing:2px; display:block; margin-bottom:10px;">Available Now</span>
+            <h1>Home & Property Co.</h1>
+            <p>Providing professional home watch, keyholder service, arrival prep, and project oversight for property owners in the Madison Valley.</p>
+        </div>
+    </header>
+
+    <section class="div-section light-bg">
+        <div class="container grid-2">
+            <div class="service-details reveal">
+                <h2>Services & Capabilities</h2>
+                <ul class="detail-list">
+                    <li>Scheduled interior and exterior property checks</li>
+                    <li>Professional photo reports and checklists after every visit</li>
+                    <li>Secure key management for owners and vendors</li>
+                    <li>Post-storm property inspections and freeze checks</li>
+                    <li>Full property openings and winterization services</li>
+                </ul>
+
+                <div class="cta-area">
+                    <button class="btn-gold">Schedule Property Care</button>
+                </div>
+            </div>
+            <div class="reveal">
+                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1000" style="width:100%; border-bottom: 10px solid var(--saddle-gold);" alt="Home Watch Service">
+            </div>
+        </div>
+    </section>
+
+    <section class="div-section">
+        <div class="container">
+            <h2 style="text-transform:uppercase; font-weight:900; margin-bottom:30px;">Service Pricing</h2>
+            <table class="price-table reveal">
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Price Range</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Home Watch</td>
+                        <td class="price-tag">$75 – $125</td>
+                        <td>Monthly or bi-weekly property checks</td>
+                    </tr>
+                    <tr>
+                        <td>Arrival Prep</td>
+                        <td class="price-tag">$95 – $175</td>
+                        <td>Home opened, warmed, and stocked before arrival</td>
+                    </tr>
+                    <tr>
+                        <td>Winterization</td>
+                        <td class="price-tag">$175 – $350</td>
+                        <td>Full winterization for seasonal closures</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <div class="sticky-bar">
+        One call for everything your Madison Valley property needs
+    </div>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray(".reveal").forEach(elem => {
+            gsap.from(elem, {
+                scrollTrigger: { trigger: elem, start: "top 85%" },
+                duration: 1.2, y: 40, opacity: 0, ease: "power3.out", stagger: 0.3
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Watch & Property Care in the Madison Valley | The Madison Range</title>
+    <meta name="description" content="Local, year-round home watch, STR turnovers, and concierge services for Madison Valley property owners. Based in Ennis, Montana.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        :root {
+            --range-navy: #0A1A2F;
+            --saddle-gold: #C49A6C;
+            --bone-white: #F2EDE4;
+            --slate-gray: #4A4F57;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--range-navy);
+            color: var(--bone-white);
+            overflow-x: hidden;
+        }
+
+        /* --- NAVIGATION & LOGO --- */
+        nav {
+            position: fixed;
+            top: 0; width: 100%; height: 100px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; background: rgba(10, 26, 47, 0.95);
+            backdrop-filter: blur(10px); z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            height: 65px;
+            text-decoration: none;
+        }
+
+        .logo-svg { height: 100%; width: auto; }
+
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { 
+            color: var(--bone-white); text-decoration: none; text-transform: uppercase; 
+            font-size: 0.75rem; font-weight: 800; letter-spacing: 1.5px; transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--saddle-gold); }
+
+        .btn-gold {
+            background: var(--saddle-gold); color: var(--range-navy);
+            padding: 14px 28px; border: none; font-weight: 900;
+            text-transform: uppercase; cursor: pointer; transition: 0.3s;
+            letter-spacing: 1px;
+        }
+        .btn-gold:hover { background: white; transform: translateY(-3px); }
+
+        /* --- MOBILE TOGGLE & DRAWER --- */
+        .mobile-toggle {
+            display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1100;
+        }
+        .mobile-toggle span { width: 30px; height: 3px; background: var(--saddle-gold); transition: 0.3s; }
+
+        .nav-drawer {
+            position: fixed; top: 0; right: -100%; width: 85%; height: 100vh;
+            background: var(--range-navy); z-index: 1050; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex; flex-direction: column; padding: 140px 40px; gap: 2rem;
+            border-left: 2px solid var(--saddle-gold);
+        }
+        .nav-drawer.active { right: 0; }
+        .nav-drawer a { color: var(--bone-white); font-size: 1.5rem; font-weight: 900; text-transform: uppercase; text-decoration: none; }
+
+        /* --- HERO --- */
+        .hero {
+            height: 100vh; display: flex; align-items: center; padding: 0 5%;
+            position: relative; overflow: hidden;
+        }
+        .hero-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, var(--range-navy) 25%, transparent 100%);
+            z-index: 1;
+        }
+        .hero-img {
+            position: absolute; top: 0; right: 0; width: 75%; height: 100%;
+            object-fit: cover; opacity: 0.4; z-index: 0;
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 850px; }
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.1; margin-bottom: 1.5rem; text-transform: uppercase; }
+        .hero h1 span { color: var(--saddle-gold); }
+        .hero p { font-size: 1.25rem; margin-bottom: 3rem; max-width: 650px; opacity: 0.9; line-height: 1.6; }
+        .btn-outline {
+            background: transparent; border: 2px solid white; color: white;
+            padding: 14px 28px; font-weight: 900; text-transform: uppercase;
+            cursor: pointer; transition: 0.3s; margin-left: 15px;
+        }
+        .btn-outline:hover { border-color: var(--saddle-gold); color: var(--saddle-gold); }
+
+        /* --- SECTIONS --- */
+        .services-strip { background: var(--bone-white); padding: 100px 5%; color: var(--range-navy); }
+        .section-label { color: var(--saddle-gold); font-weight: 900; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 1.5rem; display: block; font-size: 0.8rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+        .card { background: white; padding: 50px 40px; border-bottom: 8px solid var(--saddle-gold); transition: 0.4s; text-decoration: none; color: inherit; }
+        .card:hover { transform: translateY(-12px); box-shadow: 0 40px 80px rgba(0,0,0,0.12); }
+        .card h3 { font-size: 1.5rem; margin-bottom: 1.2rem; font-weight: 900; text-transform: uppercase; }
+        .card p { color: var(--slate-gray); line-height: 1.5; }
+
+        .vision { padding: 120px 5%; text-align: center; }
+        .vision h2 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 2rem; text-transform: uppercase; }
+        .vision h2 span { color: var(--saddle-gold); }
+        .vision p { max-width: 800px; margin: 0 auto 3rem; font-size: 1.2rem; line-height: 1.7; opacity: 0.8; }
+
+        .status-container { background: white; color: var(--range-navy); padding: 100px 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+        .status-list { list-style: none; margin-top: 30px; }
+        .status-list li { padding: 20px 0; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 15px; font-weight: 800; text-transform: uppercase; }
+        .soon li { opacity: 0.4; border-bottom: 1px dashed #ccc; }
+        .check { color: #27ae60; font-weight: 900; }
+
+        footer { padding: 100px 5% 40px; background: #050E19; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-tagline { font-style: italic; opacity: 0.5; margin: 30px 0; display: block; }
+        .contact-row { display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; font-weight: 700; }
+        .copyright { font-size: 0.7rem; opacity: 0.3; text-transform: uppercase; letter-spacing: 2px; }
+
+        @media (max-width: 992px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: flex; }
+            .status-container { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.8rem; }
+            .btn-outline { margin-left: 0; margin-top: 15px; display: block; width: 100%; }
+            .btn-gold { width: 100%; }
+            
+            .mobile-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+            .mobile-toggle.open span:nth-child(2) { opacity: 0; }
+            .mobile-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="midsonrange.html" class="logo-box">
+            <svg class="logo-svg" viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg">
+                <rect x="20" y="45" width="280" height="6" fill="white"/>
+                <text x="315" y="60" font-family="Montserrat" font-weight="900" font-size="52" fill="white">THE</text>
+                <text x="20" y="115" font-family="Montserrat" font-weight="900" font-size="62" letter-spacing="2" fill="white">MADISON</text>
+                <rect x="20" y="145" width="85" height="8" fill="white"/>
+                <text x="120" y="165" font-family="Montserrat" font-weight="900" font-size="62" letter-spacing="4" fill="white">RANGE</text>
+                <g transform="translate(450, 20)">
+                    <path d="M0 140 L45 30 L90 140 L135 30 L180 140" stroke="white" stroke-width="16" fill="none"/>
+                    <path d="M125 100 L180 100" stroke="white" stroke-width="16" fill="none"/>
+                </g>
+            </svg>
+        </a>
+
+        <div class="nav-links">
+            <a href="midsonrange.html" style="color: var(--saddle-gold);">Home</a>
+            <a href="service.html">Services</a>
+            <a href="who-we-are.html">Who We Serve</a>
+            <a href="about.html">About & Contact</a>
+            <a href="Store.html">Store</a>
+            <button class="btn-gold" onclick="window.location.href='about.html#contact'">Request Service</button>
+        </div>
+
+        <div class="mobile-toggle" id="mobile-toggle">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <div class="nav-drawer" id="nav-drawer">
+        <a href="midsonrange.html">Home</a>
+        <a href="service.html">Services</a>
+        <a href="who-we-are.html">Who We Serve</a>
+        <a href="about.html">About & Contact</a>
+        <a href="Store.html">Store</a>
+        <button class="btn-gold" style="margin-top: 20px;" onclick="window.location.href='about.html#contact'">Request Service</button>
+    </div>
+
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80" class="hero-img" alt="Madison Valley Montana">
+        <div class="hero-content">
+            <h1 id="hero-h1">Home Watch & <br><span>Property Care</span> <br>in the Madison Valley</h1>
+            <p id="hero-p">Local, year-round oversight for second homes, cabins, ranches, and STRs — one trusted call in Ennis, Montana.</p>
+            <div id="hero-btns">
+                <button class="btn-gold" onclick="window.location.href='about.html#contact'">Request Home Watch</button>
+                <button class="btn-outline" onclick="window.location.href='service.html'">See Services</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-strip">
+        <span class="section-label">Core Business (Phase 1)</span>
+        <div class="grid">
+            <a href="service.html#home-watch" class="card reveal">
+                <h3>Home Watch & Property Care</h3>
+                <p>Scheduled checks, keyholder services, arrival prep, and seasonal support.</p>
+            </a>
+            <a href="service.html#str-support" class="card reveal">
+                <h3>STR Turnovers & Guest Support</h3>
+                <p>Turnovers, guest coordination, and listing care for Airbnb/VRBO hosts.</p>
+            </a>
+            <a href="service.html#concierge" class="card reveal">
+                <h3>Owner Concierge & Arrival Prep</h3>
+                <p>Grocery stocking, airport pickup, and high-touch owner services.</p>
+            </a>
+        </div>
+    </section>
+
+    <section class="vision">
+        <h2 class="reveal">Your <span>Only Call</span> in the Madison Valley</h2>
+        <p class="reveal">For our clients, we are the only call they make when anything comes up at their home or rental – we either handle it ourselves or coordinate the right local pro.</p>
+        <a href="about.html" class="reveal" style="color: var(--saddle-gold); font-weight: 900; text-decoration: none; text-transform: uppercase;">Learn more about our vision →</a>
+    </section>
+
+    <section class="status-container">
+        <div class="status-col reveal">
+            <span class="section-label">Now</span>
+            <h2>Available Now</h2>
+            <ul class="status-list">
+                <li><span class="check">✓</span> Home Watch & Property Care</li>
+                <li><span class="check">✓</span> STR Turnovers & Guest Support</li>
+                <li><span class="check">✓</span> Owner Concierge & Arrival Prep</li>
+            </ul>
+        </div>
+        <div class="status-col soon reveal">
+            <span class="section-label">Future</span>
+            <h2>Coming Soon</h2>
+            <ul class="status-list">
+                <li>Welding & Field Repair</li>
+                <li>Storage for Vehicles & Gear</li>
+                <li>Outdoor & Wellness Rentals</li>
+                <li>Workforce Housing for Trades</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <div class="wordmark" style="font-size: 1.5rem; color: var(--saddle-gold); font-weight: 900;">MADISON RANGE</div>
+        <span class="footer-tagline">"One call for everything your Madison Valley property needs."</span>
+        <div class="contact-row">
+            <span>info@madisonrange.com</span>
+            <span>Ennis, Montana</span>
+        </div>
+        <p class="copyright">© 2026 Madison Range Holdings, LLC | Ennis, MT</p>
+    </footer>
+
+    <script>
+        // Drawer Logic
+        const toggle = document.getElementById('mobile-toggle');
+        const drawer = document.getElementById('nav-drawer');
+        toggle.addEventListener('click', () => {
+            toggle.classList.toggle('open');
+            drawer.classList.toggle('active');
+        });
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+        const tl = gsap.timeline();
+        tl.from("#hero-h1", { duration: 1, y: 80, opacity: 0, ease: "power4.out" })
+          .from("#hero-p", { duration: 1, y: 40, opacity: 0, ease: "power4.out" }, "-=0.7")
+          .from("#hero-btns", { duration: 1, y: 20, opacity: 0, ease: "power4.out" }, "-=0.7");
+
+        gsap.utils.toArray(".reveal").forEach(elem => {
+            gsap.from(elem, {
+                scrollTrigger: { trigger: elem, start: "top 85%" },
+                duration: 1, y: 40, opacity: 0, ease: "power3.out"
+            });
+        });
+    </script>
+</body>
+</html>
